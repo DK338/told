@@ -179,6 +179,8 @@ public class Servant implements Runnable {
         return i*5000;
     }
 
+
+
     void Command_Competence(Message message) {
         if ("show_castle".equals(((ChatMessage) message).MESSAGE)) {
             String All_castle = "所有城堡";
@@ -189,55 +191,55 @@ public class Servant implements Runnable {
             this.write(new ChatMessage("系統", All_castle));
 
         } else if (("show_castle:" + castles[0].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[0].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[0].getCastleName()
                     + "\n領主:" + castles[0].getLorder()
                     + "\n士兵數:" + castles[0].getSoldier_count()
             ));
             //SHOW_CASTLE=false;
         } else if (("show_castle:" + castles[1].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[1].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[1].getCastleName()
                     + "\n領主:" + castles[1].getLorder()
                     + "\n士兵數:" + castles[1].getSoldier_count()
             ));
             //SHOW_CASTLE=false;
         } else if (("show_castle:" + castles[2].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[2].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[2].getCastleName()
                     + "\n領主:" + castles[2].getLorder()
                     + "\n士兵數:" + castles[2].getSoldier_count()
             ));
             //SHOW_CASTLE=false;
         } else if (("show_castle:" + castles[3].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[3].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[3].getCastleName()
                     + "\n領主:" + castles[3].getLorder()
                     + "\n士兵數:" + castles[3].getSoldier_count()
             ));
             //SHOW_CASTLE=false;
         } else if (("show_castle:" + castles[4].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[4].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[4].getCastleName()
                     + "\n領主:" + castles[4].getLorder()
                     + "\n士兵數:" + castles[4].getSoldier_count()
             ));
             //SHOW_CASTLE=false;
         } else if (("show_castle:" + castles[5].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[5].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[5].getCastleName()
                     + "\n領主:" + castles[5].getLorder()
                     + "\n士兵數:" + castles[5].getSoldier_count()
             ));
             // SHOW_CASTLE=false;
         } else if (("show_castle:" + castles[6].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[6].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[6].getCastleName()
                     + "\n領主:" + castles[6].getLorder()
                     + "\n士兵數:" + castles[6].getSoldier_count()
             ));
             //SHOW_CASTLE=false;
         } else if (("show_castle:" + castles[7].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[7].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[7].getCastleName()
                     + "\n領主:" + castles[7].getLorder()
                     + "\n士兵數:" + castles[7].getSoldier_count()
             ));
             // SHOW_CASTLE=false;
         } else if (("show_castle:" + castles[8].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
-            this.write(new ChatMessage("系統", "\n" + "城堡名子:" + castles[8].getCastleName()
+            this.write(new ChatMessage("系統", "\n" + "城堡名字:" + castles[8].getCastleName()
                     + "\n領主:" + castles[8].getLorder()
                     + "\n士兵數:" + castles[8].getSoldier_count()
             ));
@@ -272,7 +274,7 @@ public class Servant implements Runnable {
             int All_soldier = 0;
             for (int i = 0; i < 9; i++) {
                 if (castles[i].getLorder() == this.source) {
-                    int add_count = b.nextInt(2000) + 1001;
+                    int add_count = b.nextInt(5000) + 10001;
                     castles[i].setSoldier_count(castles[i].getSoldier_count() + add_count);
                     this.write(new ChatMessage("系統", MessageFormat.format("您的" + castles[i].getCastleName() + "增加的士兵數：{0}", add_count)));
                     this.write(new ChatMessage("系統", castles[i].getCastleName() + "的士兵數:" + castles[i].getSoldier_count()));
@@ -312,7 +314,19 @@ public class Servant implements Runnable {
             attack_funition(7);
         } else if (("attack_castle:" + castles[8].getCastleName()).equals(((ChatMessage) message).MESSAGE)) {
             attack_funition(8);
-        } else
+        }
+        else if ("help".equals(((ChatMessage) message).MESSAGE))
+        {
+            String help="指令大全";
+            help=help+"\n"+"show_soldier"+" 顯示個人兵力"+
+                    "\n"+"show_castle "+"顯示所有城堡資訊"+
+                    "\n"+"show_castle: "+"城堡名稱 "+"顯示該城堡資訊"+
+                    "\n"+"add_soldier "+"增加兵力"+
+                    "\n"+"attack "+"查詢可進攻城堡"+
+                    "\n"+"attack_castle:"+" 城堡名稱"+" 可以對城堡進行攻擊";
+            this.write(new ChatMessage("系統", help));
+        }
+        else
         {
             ADD_SOLDIER=false;
             this.write(message);
@@ -341,7 +355,7 @@ public class Servant implements Runnable {
 
                 }
             }
-            this.write(new ChatMessage("系統","對"+castles[castles_location]+"發起進攻"));
+            this.write(new ChatMessage("系統","對"+castles[castles_location].getCastleName()+"發起進攻"));
             this.write(new ChatMessage("系統","總兵力:"+All_soldier_count));
             this.write(new ChatMessage("系統","敵方兵力:"+castles[castles_location].getSoldier_count()));
             if (All_soldier_count>castles[castles_location].getSoldier_count()*1.3)
@@ -350,7 +364,7 @@ public class Servant implements Runnable {
                 All_soldier_count=All_soldier_count-Integer.valueOf((int) (castles[castles_location].getSoldier_count()*1.3));
                 castles[castles_location].setLorder(this.source);
                 castles[castles_location].setOwnership(true);
-                castles[castles_location].setSoldier_count(All_soldier_count-castles[castles_location].getSoldier_count());
+                castles[castles_location].setSoldier_count(All_soldier_count);
             }
             else
             {
